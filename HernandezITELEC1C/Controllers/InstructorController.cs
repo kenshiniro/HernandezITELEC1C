@@ -7,24 +7,26 @@ namespace HernandezITELEC1C.Controllers
     {
         List<Instructor> InstructorList = new List<Instructor>()
         {
+           new Instructor()
+            {
+               Id = 1, FirstName = "Don", LastName = "Monterp", IsTenured = "Yes",
+                DateHired = DateTime.Now, Rank = Rank.Instructor
+            },
             new Instructor()
             {
-              Id= 2, FirstName = "Jobre", LastName="Barrack" , DateHired = DateTime.Now, InstructorEmail="jobre@gmail.com", Rank= Rank.Instructor, IsTenured="Yes"
-
+               Id = 2, FirstName = "Leomord", LastName = "Polska", IsTenured = "Yes",
+                DateHired= DateTime.Now, Rank= Rank.AssistProf
             },
-
-
             new Instructor()
             {
-              Id= 3, FirstName = "Dean", LastName="Poscka" , DateHired = DateTime.Parse("25/04/2020"), InstructorEmail="leao@gmail.com", Rank= Rank.AssistProf, IsTenured="No"
+               Id = 3, FirstName = "Zxy", LastName = "Qertw", IsTenured = "No",
+                DateHired = DateTime.Now, Rank = Rank.AssociateProf
             },
-
             new Instructor()
             {
-              Id= 4, FirstName = "Joe", LastName="Over" , DateHired = DateTime.Parse("16/06/2020"), InstructorEmail="latkw@gmail.com", Rank= Rank.Prof, IsTenured="Yes"
-            },
-
-
+               Id = 4, FirstName = "Jor", LastName = "Noel", IsTenured = "No",
+                DateHired = DateTime.Now, Rank = Rank.Prof
+            }
         };
 
 
@@ -34,7 +36,7 @@ namespace HernandezITELEC1C.Controllers
 
             
         }
-        public IActionResult ShowDetails(int id)
+        public IActionResult ShowDetail(int id)
         {
 
             Instructor? instructor = InstructorList.FirstOrDefault(inst => inst.Id == id);

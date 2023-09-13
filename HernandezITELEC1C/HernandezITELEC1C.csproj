@@ -6,12 +6,4 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Content Remove="Views\Instructor\ShowDetail.cshtml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Views\Instructor\ShowDetail.cshtml" />
-  </ItemGroup>
-
 </Project>

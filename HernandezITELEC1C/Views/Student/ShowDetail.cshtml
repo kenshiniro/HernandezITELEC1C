@@ -3,11 +3,9 @@
 *@
 @{
 }
+@model Student;
 
-
-@model Instructor;
-
-<h1>Instructor Details</h1>
+<h1>Student Details</h1>
 
 <table class="table table-dark">
     <tr>
@@ -15,23 +13,27 @@
         <td>@Model.Id</td>
     </tr>
     <tr>
-        <th>First Name</th>
-        <td>@Model.FirstName</td>
-    </tr>
-    <tr>
         <th>Last Name</th>
         <td>@Model.LastName</td>
     </tr>
     <tr>
-        <th>IsTenured</th>
-        <td>@Model.IsTenured</td>
+        <th>First Name</th>
+        <td>@Model.FirstName</td>
     </tr>
     <tr>
-        <th>Rank</th>
-        <td>@Model.Rank</td>
+        <th>Course</th>
+        <td>@Model.Course</td>
     </tr>
     <tr>
-        <th>Date Hired</th>
-        <td>@Model.DateHired</td>
+        <th>Email</th>
+        <td>@Model.Email</td>
+    </tr>
+    <tr>
+        <th>Admission Date</th>
+        <td>@Model.AdmissionDate</td>
+    </tr>
+    <tr>
+        <th>GPA</th>
+        <td>@Model.GPA</td>
     </tr>
 </table>
