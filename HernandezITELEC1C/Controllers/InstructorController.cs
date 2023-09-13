@@ -34,7 +34,7 @@ namespace HernandezITELEC1C.Controllers
 
             
         }
-        public IActionResult ShowDetails(int id)
+        public IActionResult ShowDetail(int id)
         {
 
             Instructor? instructor = InstructorList.FirstOrDefault(inst => inst.Id == id);
