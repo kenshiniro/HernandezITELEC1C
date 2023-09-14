@@ -1,0 +1,44 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model Instructor;
+
+<form aps-action="AddInstructor" asp-controller="Instructor" method="post">
+    <div class="form-group">
+        <label asp-for="Id">Instructor ID</label>
+        <input class="form-control" asp-for="Id">
+
+    </div>
+    <br />
+
+    <div class="form-group">
+        <label asp-for="FirstName">First Name</label>
+        <input class="form-control" asp-for="FirstName">
+
+    </div>
+    <br />
+    <div class="form-group">
+        <label asp-for="LastName">Last Name</label>
+        <input class="form-control" asp-for="LastName">
+
+    </div>
+    
+    <br />
+
+    <div class="form-group">
+        <label asp-for="IsTenured">Tenured Status</label>
+        <select class="form-control" asp-for="IsTenured" asp-items="@Html.GetEnumSelectList(typeof(IsTenured))"></select>
+    </div>
+  
+        <br />
+        <div class="form-group">
+            <label asp-for="DateHired">Date Hired</label>
+            <input class="form-control" asp-for="DateHired">
+
+        </div>
+        <br />
+        <button type="submit" class="btn btn-primary">Submit</button>
+</form>

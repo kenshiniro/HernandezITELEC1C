@@ -9,22 +9,22 @@ namespace HernandezITELEC1C.Controllers
         {
            new Instructor()
             {
-               Id = 1, FirstName = "Don", LastName = "Monterp", IsTenured = "Yes",
+               Id = 1, FirstName = "Don", LastName = "Monterp", IsTenured= IsTenured.Yes,
                 DateHired = DateTime.Now, Rank = Rank.Instructor
             },
             new Instructor()
             {
-               Id = 2, FirstName = "Leomord", LastName = "Polska", IsTenured = "Yes",
+               Id = 2, FirstName = "Leomord", LastName = "Polska", IsTenured= IsTenured.Yes,
                 DateHired= DateTime.Now, Rank= Rank.AssistProf
             },
             new Instructor()
             {
-               Id = 3, FirstName = "Zxy", LastName = "Qertw", IsTenured = "No",
+               Id = 3, FirstName = "Zxy", LastName = "Qertw", IsTenured= IsTenured.No,
                 DateHired = DateTime.Now, Rank = Rank.AssociateProf
             },
             new Instructor()
             {
-               Id = 4, FirstName = "Jor", LastName = "Noel", IsTenured = "No",
+               Id = 4, FirstName = "Jor", LastName = "Noel" ,IsTenured= IsTenured.No,
                 DateHired = DateTime.Now, Rank = Rank.Prof
             }
         };
@@ -44,6 +44,18 @@ namespace HernandezITELEC1C.Controllers
                 return View(instructor);
 
             return NotFound();
+        }
+
+        [HttpGet]
+        public IActionResult AddInstructor()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult AddInstructor(Instructor newInstructor)
+        {
+            InstructorList.Add(newInstructor);
+            return View("Index", InstructorList);
         }
     }
 }
