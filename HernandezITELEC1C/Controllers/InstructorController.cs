@@ -9,7 +9,7 @@ namespace HernandezITELEC1C.Controllers
         {
            new Instructor()
             {
-               Id = 1, FirstName = "Don", LastName = "Monterp", IsTenured= IsTenured.Yes,
+               Id = 1, FirstName = "Krap", LastName = "Doroteo", IsTenured= IsTenured.Yes,
                 DateHired = DateTime.Now, Rank = Rank.Instructor
             },
             new Instructor()
@@ -19,7 +19,7 @@ namespace HernandezITELEC1C.Controllers
             },
             new Instructor()
             {
-               Id = 3, FirstName = "Zxy", LastName = "Qertw", IsTenured= IsTenured.No,
+               Id = 3, FirstName = "Yamato", LastName = "Kaido", IsTenured= IsTenured.No,
                 DateHired = DateTime.Now, Rank = Rank.AssociateProf
             },
             new Instructor()
@@ -57,5 +57,36 @@ namespace HernandezITELEC1C.Controllers
             InstructorList.Add(newInstructor);
             return View("Index", InstructorList);
         }
+        [HttpGet]
+        public IActionResult UpdateInstructor(int id)
+        {
+
+            Instructor? instructor = InstructorList.FirstOrDefault(inst => inst.Id == id);
+
+            if (instructor != null)//was an instructor found?
+                return View(instructor);
+
+            return NotFound();
+
+
+        }
+        [HttpPost]
+
+
+        public IActionResult UpdateInstructor(Instructor instructorChanges)
+        {
+            Instructor? instructor = InstructorList.FirstOrDefault(inst => inst.Id == instructorChanges.Id);
+            if (instructor != null)
+            {
+                instructor.FirstName = instructorChanges.FirstName;
+                instructor.LastName = instructorChanges.LastName;
+                instructor.DateHired = instructorChanges.DateHired;
+                instructor.IsTenured = instructorChanges.IsTenured;
+                instructor.Rank = instructorChanges.Rank;
+            }
+            return View("Index", InstructorList);
+        }
+
+
     }
 }

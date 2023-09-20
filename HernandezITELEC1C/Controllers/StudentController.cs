@@ -9,15 +9,15 @@ namespace HernandezITELEC1C.Controllers
             {
                 new Student()
                 {
-                    Id= 1,FirstName = "Gabriel",LastName = "Montano", Course = Course.BSIT, AdmissionDate = DateTime.Parse("2022-08-26"), GPA = 1.5, Email = "ghaby021@gmail.com"
+                    Id= 1,FirstName = "Don",LastName = "Flaming", Course = Course.BSIT, AdmissionDate = DateTime.Parse("2022-08-26"), GPA = 1.5, Email = "faxe1@gmail.com"
                 },
                 new Student()
                 {
-                    Id= 2,FirstName = "Zyx",LastName = "Montano", Course = Course.BSIS, AdmissionDate = DateTime.Parse("2022-08-07"), GPA = 1, Email = "zyx@gmail.com"
+                    Id= 2,FirstName = "Beate",LastName = "Ronas", Course = Course.BSIS, AdmissionDate = DateTime.Parse("2022-08-07"), GPA = 1, Email = "z235yx@gmail.com"
                 },
                 new Student()
                 {
-                    Id= 3,FirstName = "Aerdriel",LastName = "Montano", Course = Course.BSCS, AdmissionDate = DateTime.Parse("2020-01-25"), GPA = 1.5, Email = "aerdriel@gmail.com"
+                    Id= 3,FirstName = "Fetz",LastName = "Dogs", Course = Course.BSCS, AdmissionDate = DateTime.Parse("2020-01-25"), GPA = 1.5, Email = "agerkiel@gmail.com"
                 }
             };
 
@@ -60,6 +60,37 @@ namespace HernandezITELEC1C.Controllers
         public IActionResult AddStudent(Student newStudent)
         {
             StudentList.Add(newStudent);
+            return View("Index", StudentList);
+        }
+
+        [HttpGet]
+        public IActionResult UpdateStudent(int id)
+        {
+
+            Student? student = StudentList.FirstOrDefault(st => st.Id == id);
+
+            if (student != null)//was an student found?
+                return View(student);
+
+            return NotFound();
+
+            
+        }
+        [HttpPost]
+
+
+        public IActionResult UpdateStudent(Student studentChanges)
+        {
+            Student? student = StudentList.FirstOrDefault(st => st.Id == studentChanges.Id);
+            if (student != null)
+            {
+                student.FirstName = studentChanges.FirstName;
+                student.LastName = studentChanges.LastName;
+                student.Email = studentChanges.Email;   
+                student.Course = studentChanges.Course;
+                student.GPA = studentChanges.GPA;
+                student.AdmissionDate = studentChanges.AdmissionDate;
+            }
             return View("Index", StudentList);
         }
     }

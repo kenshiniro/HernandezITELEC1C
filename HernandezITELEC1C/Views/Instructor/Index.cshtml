@@ -29,7 +29,8 @@
                 <td>@Instructor.IsTenured </td>
                 <td>@Instructor.Rank </td>
                 <td>@Instructor.DateHired </td>
-                <td><a asp-action="ShowDetail" asp-route-id="@Instructor.Id">Show Details</a></td>
+            <td><a class="btn btn-primary" asp-action="ShowDetail" asp-route-id="@Instructor.Id">Show Details</a></td>
+            <td><a class="btn btn-primary" asp-action="UpdateInstructor" asp-route-id="@Instructor.Id">Update</a></td>
             </tr>
             }
     </table>

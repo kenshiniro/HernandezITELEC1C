@@ -60,8 +60,8 @@
             <td>@student.AdmissionDate</td>
             <td>@student.Email</td>
             <td>@student.GPA</td>
-            <td><a asp-action="ShowDetail" asp-route-id="@student.Id">Show Details</a></td>
-          
+                <td><a class="btn btn-primary" asp-action="ShowDetail" asp-route-id="@student.Id">Show Details</a></td>
+                <td><a class="btn btn-primary" asp-action="UpdateStudent" asp-route-id="@student.Id">Update</a></td>
         </tr>
     }
 
