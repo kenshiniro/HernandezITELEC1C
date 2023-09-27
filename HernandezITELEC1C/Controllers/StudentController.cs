@@ -76,6 +76,7 @@ namespace HernandezITELEC1C.Controllers
 
             
         }
+       
         [HttpPost]
 
 
@@ -93,5 +94,30 @@ namespace HernandezITELEC1C.Controllers
             }
             return View("Index", StudentList);
         }
+
+         [HttpGet]
+        public IActionResult DeleteStudent(int id)
+        {
+
+            Student? student = StudentList.FirstOrDefault(st => st.Id == id);
+
+            if (student != null)//was a student found?
+                return View(student);
+
+            return NotFound();
+
+
+        }
+        [HttpPost]
+        public IActionResult DeleteStudent(Student newStudent)
+        {
+            Student? student = StudentList.FirstOrDefault(st => st.Id == newStudent.Id);
+            if (student != null)
+            {
+                StudentList.Remove(student);
+            }
+            return View("Index", StudentList);
+        }
+
     }
 }

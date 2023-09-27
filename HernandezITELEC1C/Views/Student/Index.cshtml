@@ -39,7 +39,7 @@
     <table  class="table table-dark">
             
         <tr>
-            <th colspan="6">Student</th>
+            <th colspan="8">Student</th>
         </tr>
 
         <tr>
@@ -49,7 +49,9 @@
             <td>Email</td>
             <td>GPA</td>
             <td>Details</td>
-           
+            <td></td>
+           <td></td>    
+           <td></td>
             
         </tr>
     @foreach (var student in Model)
@@ -61,11 +63,12 @@
             <td>@student.Email</td>
             <td>@student.GPA</td>
                 <td><a class="btn btn-primary" asp-action="ShowDetail" asp-route-id="@student.Id">Show Details</a></td>
-                <td><a class="btn btn-primary" asp-action="UpdateStudent" asp-route-id="@student.Id">Update</a></td>
+                <td><a class="btn btn-info" asp-action="UpdateStudent" asp-route-id="@student.Id">Update</a></td>
+                <td><a class="btn btn-danger" asp-action="DeleteStudent" asp-route-id="@student.Id">Delete</a></td>
         </tr>
     }
 
-        
+            
 </table>
 
     <a asp-action="AddStudent" class="btn btn-primary">Add Student</a>

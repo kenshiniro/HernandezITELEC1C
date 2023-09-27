@@ -1,0 +1,41 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model Instructor;
+<h1>Are you sure you want to delete instructor? </h1>
+<form aps-action="DeleteInstructor" asp-controller="Instructor" method="post">
+    <div class="form-group">
+        <label asp-for="Id">Instructor ID</label>
+        <input class="form-control" asp-for="Id" readonly>
+
+    </div>
+    <br />
+
+    <div class="form-group">
+        <label asp-for="FirstName">First Name</label>
+        <input class="form-control" asp-for="FirstName" readonly>
+
+    </div>
+    <br />
+    <div class="form-group">
+        <label asp-for="LastName">Last Name</label>
+        <input class="form-control" asp-for="LastName" readonly>
+
+    </div>
+
+    <br />
+
+    <div class="form-group">
+        <label asp-for="IsTenured">Tenured Status</label>
+        <select class="form-control" readonly asp-for="IsTenured" asp-items="@Html.GetEnumSelectList(typeof(IsTenured))"> </select>
+    </div>
+
+ 
+    <br />
+    <button type="submit" class="btn btn-primary">Delete</button>
+    <button type="button" onclick="history.back()" class="btn btn-secondary">Cancel</button>
+
+</form>

@@ -88,5 +88,28 @@ namespace HernandezITELEC1C.Controllers
         }
 
 
+        public IActionResult DeleteInstructor(int id)
+        {
+
+            Instructor? instructor = InstructorList.FirstOrDefault(inst => inst.Id == id);
+
+            if (instructor != null)//was an instructor found?
+                return View(instructor);
+
+            return NotFound();
+
+
+        }
+        [HttpPost]
+        public IActionResult DeleteInstructor(Instructor newInstructor)
+        {
+            Instructor? instructor = InstructorList.FirstOrDefault(inst => inst.Id == newInstructor.Id);
+            if (instructor != null)
+            {
+                InstructorList.Remove(instructor);
+            }
+            return View("Index", InstructorList);
+        }
+
     }
 }

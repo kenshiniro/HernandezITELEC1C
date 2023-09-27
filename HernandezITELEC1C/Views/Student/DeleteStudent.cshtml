@@ -1,0 +1,50 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+
+}
+@model Student;
+
+<h1>Are you sure you want to delete?</h1>
+
+<form aps-action="DeleteStudent" asp-controller="Student" method="post">
+    <div class="form-group">
+        <label hidden asp-for="Id">Student ID</label>
+
+        <input class="form-control" hidden asp-for="Id" readonly>
+
+    </div>
+    <br />
+
+    <div class="form-group">
+        <label asp-for="FirstName">First Name</label>
+        <input class="form-control" asp-for="FirstName" readonly>
+
+    </div>
+    <br />
+    <div class="form-group">
+        <label asp-for="LastName">Last Name</label>
+        <input class="form-control" asp-for="LastName" readonly>
+
+    </div>
+    <br />
+
+    <div class="form-group">
+        <label asp-for="Email">Email</label>
+        <input class="form-control" asp-for="Email" readonly>
+
+    </div>
+
+    
+    <br />
+    <div class="form-row align-items-center">
+        <div class="col-sm-3 my-1">
+            <label class="sr-only" for="inlineFormInputGPA">GPA</label>
+            <input type="text" class="form-control" id="inlineFormInputGPA">
+        </div>
+       
+        <br />
+        <button type="submit" class="btn btn-primary">Delete</button>
+        <button type="button" onclick="history.back()" class="btn btn-secondary">Cancel</button>
+</form>
