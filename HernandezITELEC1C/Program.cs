@@ -1,8 +1,10 @@
+using HernandezITELEC1C.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
+builder.Services.AddSingleton<IMyFakeDatasService, MyFakeDataService>(); //dummy data service
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

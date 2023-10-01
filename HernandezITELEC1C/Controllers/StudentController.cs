@@ -1,25 +1,23 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using HernandezITELEC1C.Models;
+using HernandezITELEC1C.Services;
 
 namespace HernandezITELEC1C.Controllers
 {
     public class StudentController : Controller
     {
-        List<Student> StudentList = new List<Student>
-            {
-                new Student()
-                {
-                    Id= 1,FirstName = "Don",LastName = "Flaming", Course = Course.BSIT, AdmissionDate = DateTime.Parse("2022-08-26"), GPA = 1.5, Email = "faxe1@gmail.com"
-                },
-                new Student()
-                {
-                    Id= 2,FirstName = "Beate",LastName = "Ronas", Course = Course.BSIS, AdmissionDate = DateTime.Parse("2022-08-07"), GPA = 1, Email = "z235yx@gmail.com"
-                },
-                new Student()
-                {
-                    Id= 3,FirstName = "Fetz",LastName = "Dogs", Course = Course.BSCS, AdmissionDate = DateTime.Parse("2020-01-25"), GPA = 1.5, Email = "agerkiel@gmail.com"
-                }
-            };
+
+        private readonly IMyFakeDatasService _dummyData;
+     
+        public StudentController(IMyFakeDatasService dummyData)
+        {
+            _dummyData = dummyData;
+
+        }
+
+
+
+
 
         /*public IActionResult Index()
         {
@@ -37,13 +35,13 @@ namespace HernandezITELEC1C.Controllers
         public IActionResult Index()
         {
 
-            return View(StudentList);
+            return View(_dummyData.StudentList);
         }
 
         public IActionResult ShowDetail(int id)
         {
             //Search for the student whose id matches the given id
-            Student? student = StudentList.FirstOrDefault(st => st.Id == id);
+            Student? student = _dummyData.StudentList.FirstOrDefault(st => st.Id == id);
 
             if (student != null)//was an student found?
                 return View(student);
@@ -59,15 +57,15 @@ namespace HernandezITELEC1C.Controllers
         [HttpPost]
         public IActionResult AddStudent(Student newStudent)
         {
-            StudentList.Add(newStudent);
-            return View("Index", StudentList);
+            _dummyData.StudentList.Add(newStudent);
+            return RedirectToAction("Index");
         }
 
         [HttpGet]
         public IActionResult UpdateStudent(int id)
         {
 
-            Student? student = StudentList.FirstOrDefault(st => st.Id == id);
+            Student? student = _dummyData.StudentList.FirstOrDefault(st => st.Id == id);
 
             if (student != null)//was an student found?
                 return View(student);
@@ -82,7 +80,7 @@ namespace HernandezITELEC1C.Controllers
 
         public IActionResult UpdateStudent(Student studentChanges)
         {
-            Student? student = StudentList.FirstOrDefault(st => st.Id == studentChanges.Id);
+            Student? student = _dummyData.StudentList.FirstOrDefault(st => st.Id == studentChanges.Id);
             if (student != null)
             {
                 student.FirstName = studentChanges.FirstName;
@@ -92,14 +90,14 @@ namespace HernandezITELEC1C.Controllers
                 student.GPA = studentChanges.GPA;
                 student.AdmissionDate = studentChanges.AdmissionDate;
             }
-            return View("Index", StudentList);
+            return RedirectToAction("Index");
         }
 
          [HttpGet]
         public IActionResult DeleteStudent(int id)
         {
 
-            Student? student = StudentList.FirstOrDefault(st => st.Id == id);
+            Student? student = _dummyData.StudentList.FirstOrDefault(st => st.Id == id);
 
             if (student != null)//was a student found?
                 return View(student);
@@ -111,12 +109,12 @@ namespace HernandezITELEC1C.Controllers
         [HttpPost]
         public IActionResult DeleteStudent(Student newStudent)
         {
-            Student? student = StudentList.FirstOrDefault(st => st.Id == newStudent.Id);
+            Student? student = _dummyData.StudentList.FirstOrDefault(st => st.Id == newStudent.Id);
             if (student != null)
             {
-                StudentList.Remove(student);
+                _dummyData.StudentList.Remove(student);
             }
-            return View("Index", StudentList);
+            return RedirectToAction("Index");
         }
 
     }
