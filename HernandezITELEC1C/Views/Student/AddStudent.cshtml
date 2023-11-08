@@ -7,12 +7,8 @@
 @model Student;
 
 <form aps-action="AddStudent" asp-controller="Student" method="post">
-    <div class="form-group">
-        <label asp-for="Id">Student ID</label>
-        <input class="form-control" asp-for="Id" >
+    <div asp-validation-summary="All" class="text-danger"></div>
 
-    </div>
-    <br />
 
     <div class="form-group">
         <label asp-for="FirstName">First Name</label>
@@ -39,17 +35,16 @@
         <select class="form-control" asp-for="Course" asp-items="@Html.GetEnumSelectList(typeof(Course))"></select>
         </div>
     <br />
-    <div class="form-row align-items-center">
-        <div class="col-sm-3 my-1">
-            <label class="sr-only" for="inlineFormInputGPA">GPA</label>
-            <input type="text" class="form-control" id="inlineFormInputGPA" >
+     <div class="form-group">
+        <label asp-for="GPA">GPA</label>
+        <input class="form-control" asp-for="GPA">
         </div>
         <br />
-        <div class="form-group">
-            <label asp-for="DateEnrolled">Date Enrolled</label>
-            <input class="form-control" asp-for="DateEnrolled" >
+    <div class="form-group">
+        <label asp-for="AdmissionDate">Admission Date</label>
+        <input class="form-control" asp-for="AdmissionDate">
 
         </div>
         <br />
-    <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
 </form>
