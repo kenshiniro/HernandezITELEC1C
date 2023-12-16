@@ -6,10 +6,14 @@
 }
 @model Student;
 
-<form aps-action="AddStudent" asp-controller="Student" method="post">
+<form aps-action="AddStudent" asp-controller="Student" method="post" encytpe="multipart/form-data">
     <div asp-validation-summary="All" class="text-danger"></div>
 
-
+    <div class="form-group">
+        <label asp-for="UploadedPhoto"></label>
+        <input class="form-control" asp-for="UploadedPhoto" />
+    </div>
+    
     <div class="form-group">
         <label asp-for="FirstName">First Name</label>
         <input  class="form-control" asp-for="FirstName"  >

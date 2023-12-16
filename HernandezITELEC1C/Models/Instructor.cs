@@ -41,6 +41,10 @@ namespace HernandezITELEC1C.Models
         [Required(ErrorMessage = "Please provide a mobile number")]
         [RegularExpression("[0-9]{2} - [0-9]{3} - [0-9]{4}",ErrorMessage="Follow the format 00-000-0000")]
         public string? Mobile { get; set; }
+
+        [Display(Name = "Profile Picture")]
+        public byte[]? StudentProfilePhoto { get; set; }
+        
     }
 
 }

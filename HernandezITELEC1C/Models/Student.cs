@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿    using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HernandezITELEC1C.Models
 {
@@ -48,8 +49,12 @@ namespace HernandezITELEC1C.Models
 
         [Display(Name = "Admission Date")]
         public DateTime AdmissionDate { get; set; }
-        
 
+        [NotMapped]
+        public IFormFile? UploadedPhoto { get; set; }
+
+        [Display(Name = "Profile Picture")]
+        public string? ImagePath { get; set; }
 
     }
 }

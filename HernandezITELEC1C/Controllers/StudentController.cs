@@ -8,11 +8,12 @@ namespace HernandezITELEC1C.Controllers
     {
 
         private readonly AppDbContext _dbData;
+        private readonly IWebHostEnvironment _environment;
      
-        public StudentController(AppDbContext dbData)
+        public StudentController(AppDbContext dbData, IWebHostEnvironment environment)
         {
             _dbData = dbData;
-
+            _environment = environment;
         }
 
 
@@ -38,6 +39,11 @@ namespace HernandezITELEC1C.Controllers
             return View(_dbData.Students);
         }
 
+
+     
+
+        
+
         public IActionResult ShowDetail(int id)
         {
             //Search for the student whose id matches the given id
@@ -51,15 +57,49 @@ namespace HernandezITELEC1C.Controllers
        [HttpGet]
         public IActionResult AddStudent()
         {
+           /* if (Request.Form.Files.Count > 0)
+            {
+                var file = Request.Form.Files[0];
+                MemoryStream ms = new MemoryStream();
+                file.CopyTo(ms);
+                newStudent.StudentProfilePhoto = ms.ToArray();
+                ms.Close();
+                ms.Dispose();
 
+            } */
             return View();
         }
         [HttpPost]
         public IActionResult AddStudent(Student newStudent)
         {
+            
+
+            /* if (Request.Form.Files.Count > 0)
+            {
+                var file = Request.Form.Files[0];
+                MemoryStream ms = new MemoryStream();
+                file.CopyTo(ms);
+                newStudent.StudentProfilePhoto = ms.ToArray();
+                ms.Close();
+                ms.Dispose();
+
+            } */
 
             if (!ModelState.IsValid)
                 return View();
+
+
+            string folder = "students/images/";
+            string servFolder = Path.Combine(_environment.WebRootPath, folder);
+            string uniqueFileName = Guid.NewGuid().ToString() + "_" + newStudent.UploadedPhoto.FileName;
+            string filePath = Path.Combine(servFolder, uniqueFileName);
+            using (var fileStream = new FileStream(filePath, FileMode.Create))
+            {
+                newStudent.UploadedPhoto.CopyTo(fileStream);
+            }
+            newStudent.ImagePath = folder + uniqueFileName;
+
+
 
             _dbData.Students.Add(newStudent);
             _dbData.SaveChanges();
